@@ -36,6 +36,19 @@ class Interpreter(object):
             elif instruction == "STORE_NAME":
                 self.STORE_NAME(argment)
 
+    def execute(self, what_to_execute):
+        instructions = what_to_execute["instructions"]
+
+        for step in instructions:
+            instruction, argument = step
+            argument = self.parse_argument(instruction, argument, what_to_execute)
+
+            fouce_method = getattr(self, instruction)
+            if argument is None:
+                fouce_method()
+            else:
+                fouce_method(argument)
+
     def LOAD_NAME(self, name):
         val = self.environment[name]
         self.stack.append(val)
@@ -108,3 +121,4 @@ if __name__ == '__main__':
     # b = 4
     # a + b
     interpreter.ran_code(what_to_execute2)
+    interpreter.execute(what_to_execute2)
