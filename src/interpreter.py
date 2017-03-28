@@ -1,10 +1,7 @@
 # coding: utf-8
 
 
-
-
 class Interpreter(object):
-
     def __init__(self):
         self.stack = []
 
@@ -38,7 +35,7 @@ class Interpreter(object):
 
 if __name__ == '__main__':
     what_to_execute = {
-        "instructions" : [
+        "instructions": [
             ("LOAD_DATA", 0),
             ("LOAD_DATA", 1),
             ("ADD_TWO_VALUES", None),
@@ -47,5 +44,18 @@ if __name__ == '__main__':
         "numbers": [100, 4]
     }
 
+    what_to_execute1 = {
+        "instructions": [
+            ("LOAD_DATA", 0),
+            ("LOAD_DATA", 1),
+            ("ADD_TWO_VALUES", None),
+            ("LOAD_DATA", 2),
+            ("ADD_TWO_VALUES", None),
+            ("PRINT_ANSWER", None)
+        ],
+        "numbers": [100, 4, 3]
+    }
+
     interpreter = Interpreter()
     interpreter.ran_code(what_to_execute)
+    interpreter.ran_code(what_to_execute1)
